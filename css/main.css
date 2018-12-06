@@ -1,0 +1,102 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#app {
+  position: relative;
+  display: grid;
+  width: 400px;
+  height: 400px;
+  grid-template-columns: repeat(8, 50px);
+  grid-template-rows: repeat(8, 50px);
+}
+
+.cell {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: solid 1px #000;
+  border-left: solid 1px #000;
+  background-color: rgb(42,99,25);
+  pointer-events: none;
+}
+.cell.puttable {
+  cursor: pointer;
+  pointer-events: auto;
+}
+.cell.puttable::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+#app[data-phase="1"] .cell.puttable::before {
+  background-color: #000;
+  opacity: .3;
+}
+#app[data-phase="2"] .cell.puttable::before {
+  background-color: #fff;
+  opacity: .2;
+}
+.cell::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+.cell[data-state="0"]::after {
+  display: none;
+}
+.cell[data-state="1"]::after {
+  background-color: #000;
+}
+.cell[data-state="2"]::after {
+  background-color: #fff;
+}
+.cell:nth-child(8n) {
+  border-right: solid 1px #000;
+}
+.cell:nth-child(n + 57) {
+  border-bottom: solid 1px #000;
+}
+#app[data-phase="1"] .cell.puttable:hover::after {
+  background-color: #000;
+}
+#app[data-phase="2"] .cell.puttable:hover::after {
+  background-color: #fff;
+}
+.cell.puttable:hover::after {
+  display: block;
+  opacity: .3;
+}
+.pass {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0, .6);
+  text-align: center;
+  color: #fff;
+}
