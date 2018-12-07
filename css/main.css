@@ -87,7 +87,8 @@ body {
   display: block;
   opacity: .3;
 }
-.pass {
+.pass,
+.game-over {
   position: absolute;
   top: 0;
   right: 0;
@@ -99,4 +100,7 @@ body {
   background-color: rgba(0,0,0, .6);
   text-align: center;
   color: #fff;
+}
+.game-over {
+  flex-direction: column;
 }
